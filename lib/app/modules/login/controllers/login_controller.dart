@@ -5,6 +5,7 @@ import 'package:mini_project_10/app/routes/app_pages.dart';
 class LoginController extends GetxController {
   TextEditingController usernameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  bool isValid = false;
 
   void buttonLoginClicked() {
     Get.toNamed(Routes.HOME);
@@ -27,5 +28,13 @@ class LoginController extends GetxController {
 
   void signinTextClicked() {
     Get.toNamed(Routes.REGISTER);
+  }
+
+  validation() {
+    if (usernameController.text.isEmpty) {
+      return isValid;
+    } else {
+      return !isValid;
+    }
   }
 }

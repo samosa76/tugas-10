@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mini_project_10/app/components/my_button.dart';
 import 'package:mini_project_10/app/components/my_textfield.dart';
+import 'package:mini_project_10/app/routes/app_pages.dart';
 
 import '../controllers/login_controller.dart';
 
@@ -87,7 +88,10 @@ class LoginView extends GetView<LoginController> {
                   ),
                   MyButton(
                     onTap: () {
-                      controller.buttonLoginClicked();
+                      controller.isValid = controller.validation();
+                      if (controller.isValid) {
+                        Get.offAndToNamed(Routes.HOME);
+                      }
                     },
                     text: "Login",
                   ),

@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:mini_project_10/app/components/my_button.dart';
+import 'package:mini_project_10/app/components/my_textfield.dart';
 
 import '../controllers/login_controller.dart';
 
@@ -17,9 +21,80 @@ class LoginView extends GetView<LoginController> {
           ),
         ),
         child: Center(
-          child: Text(
-            'LoginView is working',
-            style: TextStyle(fontSize: 20),
+          child: ListView(
+            scrollDirection: Axis.vertical,
+            children: [
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Image.asset("assets/images/logo-login.png"),
+                  SizedBox(
+                    width: 300,
+                    child: FittedBox(
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 16.0),
+                        child: Text(
+                          'Welcome To Azalea',
+                          style: GoogleFonts.poppins(
+                            textStyle: const TextStyle(
+                              fontSize: 30,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 15.0),
+                    child: SizedBox(
+                      width: 300,
+                      child: Text(
+                        'Username',
+                        style: GoogleFonts.poppins(
+                          textStyle: const TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  MyTextField(
+                    controller: controller.usernameController,
+                    hintText: "Username here...",
+                    obscureText: false,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 15.0),
+                    child: SizedBox(
+                      width: 300,
+                      child: Text(
+                        'Password',
+                        style: GoogleFonts.poppins(
+                          textStyle: const TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  MyTextField(
+                    controller: controller.passwordController,
+                    hintText: "Password here...",
+                    obscureText: true,
+                  ),
+                  MyButton(
+                    onTap: () {
+                      controller.buttonLoginClicked();
+                    },
+                    text: "Login",
+                  ),
+                ],
+              ),
+            ],
           ),
         ),
       ),

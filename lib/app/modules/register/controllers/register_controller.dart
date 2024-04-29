@@ -1,9 +1,11 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mini_project_10/app/routes/app_pages.dart';
 
 class RegisterController extends GetxController {
-  //TODO: Implement RegisterController
+  final TextEditingController username = TextEditingController();
+  final TextEditingController password = TextEditingController();
 
-  final count = 0.obs;
   @override
   void onInit() {
     super.onInit();
@@ -19,5 +21,11 @@ class RegisterController extends GetxController {
     super.onClose();
   }
 
-  void increment() => count.value++;
+  void loginTextClicked() {
+    Get.toNamed(Routes.LOGIN);
+  }
+
+  void buttonRegisterClicked() {
+    Get.toNamed(Routes.HOME);
+  }
 }

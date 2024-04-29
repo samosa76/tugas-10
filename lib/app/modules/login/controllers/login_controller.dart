@@ -24,4 +24,8 @@ class LoginController extends GetxController {
   void onClose() {
     super.onClose();
   }
+
+  void signinTextClicked() {
+    Get.toNamed(Routes.REGISTER);
+  }
 }

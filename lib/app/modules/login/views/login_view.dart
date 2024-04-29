@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -9,7 +8,7 @@ import 'package:mini_project_10/app/components/my_textfield.dart';
 import '../controllers/login_controller.dart';
 
 class LoginView extends GetView<LoginController> {
-  const LoginView({Key? key}) : super(key: key);
+  const LoginView({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -91,6 +90,33 @@ class LoginView extends GetView<LoginController> {
                       controller.buttonLoginClicked();
                     },
                     text: "Login",
+                  ),
+                  SizedBox(
+                    width: 300,
+                    child: Row(
+                      children: [
+                        Text(
+                          'Already have an account ?',
+                          style: GoogleFonts.poppins(
+                            textStyle: const TextStyle(
+                              color: Colors.black,
+                              fontSize: 12,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: 5.0),
+                        GestureDetector(
+                          onTap: () {
+                            controller.signinTextClicked();
+                          },
+                          child: const Text(
+                            'Sign in',
+                            style: TextStyle(color: Colors.blue),
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ],
               ),

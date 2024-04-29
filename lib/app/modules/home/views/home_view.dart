@@ -5,7 +5,6 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mini_project_10/app/components/my_button.dart';
-import 'package:mini_project_10/app/routes/app_pages.dart';
 
 import '../controllers/home_controller.dart';
 
@@ -73,7 +72,7 @@ class HomeView extends GetView<HomeController> {
             ),
             //Garis Batas
             const Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 30.0),
+              padding: EdgeInsets.symmetric(horizontal: 30.0),
               child: Divider(),
             ),
             //Content

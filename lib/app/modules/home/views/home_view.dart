@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -39,7 +40,7 @@ class HomeView extends GetView<HomeController> {
                         children: [
                           SizedBox(
                             child: Text(
-                              'Hello, [Name]',
+                              "Hello ${controller.user.email}",
                               style: GoogleFonts.poppins(
                                 textStyle: const TextStyle(
                                   fontSize: 20.0,
@@ -131,6 +132,12 @@ class HomeView extends GetView<HomeController> {
             ),
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          FirebaseAuth.instance.signOut();
+        },
+        child: const Icon(Icons.logout),
       ),
     );
   }

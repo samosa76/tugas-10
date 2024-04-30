@@ -1,11 +1,7 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
+import 'package:mini_project_10/app/routes/app_pages.dart';
 
-class HomeController extends GetxController {
-  final test = "Hello, [Name]";
-
-  final user = FirebaseAuth.instance.currentUser!;
-
+class AuthController extends GetxController {
   @override
   void onInit() {
     super.onInit();
@@ -19,5 +15,9 @@ class HomeController extends GetxController {
   @override
   void onClose() {
     super.onClose();
+  }
+
+  void loggedIn() {
+    Get.offAndToNamed(Routes.LOGIN);
   }
 }

@@ -88,10 +88,11 @@ class LoginView extends GetView<LoginController> {
                   ),
                   MyButton(
                     onTap: () {
-                      controller.isValid = controller.validation();
-                      if (controller.isValid) {
-                        Get.offAndToNamed(Routes.HOME);
-                      }
+                      // controller.isValid = controller.validation();
+                      // if (controller.isValid) {
+                      //   Get.offAndToNamed(Routes.HOME);
+                      // }
+                      controller.signUserIn();
                     },
                     text: "Login",
                   ),

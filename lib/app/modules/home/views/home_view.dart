@@ -40,7 +40,7 @@ class HomeView extends GetView<HomeController> {
                         children: [
                           SizedBox(
                             child: Text(
-                              "Hello ${controller.user.email}",
+                              "Hello ${controller.username()}",
                               style: GoogleFonts.poppins(
                                 textStyle: const TextStyle(
                                   fontSize: 20.0,

@@ -51,7 +51,7 @@ class LoginView extends GetView<LoginController> {
                     child: SizedBox(
                       width: 300,
                       child: Text(
-                        'Username',
+                        'Email',
                         style: GoogleFonts.poppins(
                           textStyle: const TextStyle(
                             fontSize: 18,
@@ -63,7 +63,7 @@ class LoginView extends GetView<LoginController> {
                   ),
                   MyTextField(
                     controller: controller.usernameController,
-                    hintText: "Username here...",
+                    hintText: "Email here...",
                     obscureText: false,
                   ),
                   Padding(
@@ -88,10 +88,6 @@ class LoginView extends GetView<LoginController> {
                   ),
                   MyButton(
                     onTap: () {
-                      // controller.isValid = controller.validation();
-                      // if (controller.isValid) {
-                      //   Get.offAndToNamed(Routes.HOME);
-                      // }
                       controller.signUserIn();
                     },
                     text: "Login",

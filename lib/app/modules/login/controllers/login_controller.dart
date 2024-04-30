@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mini_project_10/app/modules/login/views/login_view.dart';
 import 'package:mini_project_10/app/routes/app_pages.dart';
 
 class LoginController extends GetxController {
@@ -31,15 +32,18 @@ class LoginController extends GetxController {
     Get.toNamed(Routes.REGISTER);
   }
 
-  validation() {
-    if (usernameController.text.isEmpty) {
-      return isValid;
-    } else {
-      return !isValid;
-    }
-  }
-
   void signUserIn() async {
+    showDialog(
+      context: Get.context!,
+      builder: (context) {
+        return const Center(
+          child: CircularProgressIndicator(
+            color: Color.fromRGBO(213, 103, 205, 1),
+          ),
+        );
+      },
+    );
+
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: usernameController.text,
@@ -52,5 +56,6 @@ class LoginController extends GetxController {
         print('Wrong password');
       }
     }
+    Navigator.pop(Get.context!);
   }
 }

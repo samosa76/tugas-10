@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mini_project_10/app/modules/home/views/home_view.dart';
 import 'package:mini_project_10/app/modules/login/views/login_view.dart';
-import 'package:mini_project_10/app/routes/app_pages.dart';
 
 import '../controllers/auth_controller.dart';
 

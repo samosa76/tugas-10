@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mini_project_10/app/modules/login/views/login_view.dart';
 import 'package:mini_project_10/app/routes/app_pages.dart';
 
 class LoginController extends GetxController {

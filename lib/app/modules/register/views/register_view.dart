@@ -53,7 +53,7 @@ class RegisterView extends GetView<RegisterController> {
                     ),
                   ),
                   MyTextField(
-                    controller: controller.username,
+                    controller: controller.usernameController,
                     hintText: "Username here...",
                     obscureText: false,
                   ),
@@ -62,7 +62,7 @@ class RegisterView extends GetView<RegisterController> {
                     child: SizedBox(
                       width: 300,
                       child: Text(
-                        'Name',
+                        'Email',
                         style: GoogleFonts.poppins(
                           textStyle: const TextStyle(
                             fontSize: 18,
@@ -73,8 +73,8 @@ class RegisterView extends GetView<RegisterController> {
                     ),
                   ),
                   MyTextField(
-                    controller: controller.username,
-                    hintText: "Name here...",
+                    controller: controller.emailController,
+                    hintText: "Email here...",
                     obscureText: false,
                   ),
                   Padding(
@@ -93,7 +93,7 @@ class RegisterView extends GetView<RegisterController> {
                     ),
                   ),
                   MyTextField(
-                    controller: controller.username,
+                    controller: controller.addressController,
                     hintText: "Address here...",
                     obscureText: false,
                   ),
@@ -113,7 +113,7 @@ class RegisterView extends GetView<RegisterController> {
                     ),
                   ),
                   MyTextField(
-                    controller: controller.username,
+                    controller: controller.numberController,
                     hintText: "Phone Number here...",
                     obscureText: false,
                   ),
@@ -133,9 +133,9 @@ class RegisterView extends GetView<RegisterController> {
                     ),
                   ),
                   MyTextField(
-                    controller: controller.username,
+                    controller: controller.passwordController,
                     hintText: "Password here...",
-                    obscureText: false,
+                    obscureText: true,
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 15.0),
@@ -153,14 +153,21 @@ class RegisterView extends GetView<RegisterController> {
                     ),
                   ),
                   MyTextField(
-                    controller: controller.username,
+                    controller: controller.confirmPasswordController,
                     hintText: "Confirm Password here...",
-                    obscureText: false,
+                    obscureText: true,
                   ),
                   MyButton(
                     text: 'Register',
                     onTap: () {
-                      controller.buttonRegisterClicked();
+                      controller.registerAccount(
+                        controller.usernameController.text,
+                        controller.emailController.text,
+                        controller.addressController.text,
+                        controller.numberController.text,
+                        controller.passwordController.text,
+                        controller.confirmPasswordController.text,
+                      );
                     },
                   ),
                   SizedBox(
@@ -180,7 +187,7 @@ class RegisterView extends GetView<RegisterController> {
                         const SizedBox(width: 5.0),
                         GestureDetector(
                           onTap: () {
-                            controller.loginTextClicked();
+                            controller.textLoginClicked();
                           },
                           child: const Text(
                             'Log in',

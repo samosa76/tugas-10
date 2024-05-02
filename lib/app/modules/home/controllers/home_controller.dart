@@ -1,15 +1,19 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 
 class HomeController extends GetxController {
-  final user = FirebaseAuth.instance.currentUser!;
+  var user = FirebaseAuth.instance.currentUser!.email;
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
 
-  String test = FirebaseAuth.instance.currentUser!.email!;
-  String test2 = "noob@gmail.com";
+  //get user profile
+  Future<DocumentSnapshot<Map<String, dynamic>>> getUserProfile() async {
+    return await FirebaseFirestore.instance.collection('user').doc(user).get();
+  }
 
-  String username() {
-    var username = test.substring(0, test2.indexOf('@'));
-    return username;
+  //Sgin User Out
+  Future<void> signUserOut() async {
+    await FirebaseAuth.instance.signOut();
   }
 
   @override

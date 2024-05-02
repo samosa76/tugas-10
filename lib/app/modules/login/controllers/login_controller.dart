@@ -50,11 +50,12 @@ class LoginController extends GetxController {
       );
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
-        print('No user found for the email');
+        Get.snackbar('Invalid', 'No user found for the email');
       } else if (e.code == "wrong-password") {
-        print('Wrong password');
+        Get.snackbar('Invalid', 'Wrong password');
       }
     }
+
     Navigator.pop(Get.context!);
   }
 }

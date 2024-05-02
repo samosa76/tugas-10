@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mini_project_10/app/routes/app_pages.dart';
@@ -12,6 +13,7 @@ class RegisterController extends GetxController {
   late TextEditingController confirmPasswordController;
   FirebaseFirestore firestore = FirebaseFirestore.instance;
 
+  //Register new account
   void registerAccount(
     String username,
     String email,
@@ -20,6 +22,7 @@ class RegisterController extends GetxController {
     String password,
     String confirmPassword,
   ) async {
+    //Check if every text field is NOT NULL
     if (username.isEmpty ||
         email.isEmpty ||
         address.isEmpty ||
@@ -27,13 +30,19 @@ class RegisterController extends GetxController {
         password.isEmpty ||
         confirmPassword.isEmpty) {
       Get.snackbar('Missing Data', 'Silahkan lengkapi data anda');
-    } else if (!_isValidEmail(email)) {
+    }
+    //Check email validation
+    else if (!_isValidEmail(email)) {
       Get.snackbar('Invalid Email', 'Masukan email dengan benar');
     } else {
+      //If confirmation password match
       if (password == confirmPassword) {
         try {
+          //add datetime
           String dateNow = DateTime.now().toString();
-          await firestore.collection('user').add({
+
+          //adding data to "user" collection and rename doc by email
+          await firestore.collection('user').doc(email).set({
             'username': username,
             'email': email,
             'addres': address,
@@ -41,7 +50,14 @@ class RegisterController extends GetxController {
             'password': password,
             'register-at': dateNow,
           });
+          //create new user using email and password
+          await FirebaseAuth.instance.createUserWithEmailAndPassword(
+            email: email,
+            password: password,
+          );
+
           Get.snackbar('Success', 'User telah di buat');
+          Get.offAndToNamed(Routes.AUTH);
           usernameController.clear();
           emailController.clear();
           addressController.clear();
@@ -57,6 +73,7 @@ class RegisterController extends GetxController {
     }
   }
 
+  //validation email
   bool _isValidEmail(String email) {
     // Regular expression pattern for email validation
     final RegExp emailRegex = RegExp(
@@ -81,6 +98,7 @@ class RegisterController extends GetxController {
     super.onReady();
   }
 
+  //reset setiap text field
   @override
   void onClose() {
     super.onClose();
@@ -92,7 +110,8 @@ class RegisterController extends GetxController {
     confirmPasswordController.dispose();
   }
 
+  //text sudah punya akun clicked
   void textLoginClicked() {
-    Get.toNamed(Routes.LOGIN);
+    Get.offNamed(Routes.AUTH);
   }
 }

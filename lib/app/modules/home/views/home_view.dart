@@ -4,8 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 import 'package:get/get.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mini_project_10/app/components/my_button.dart';
+import 'package:mini_project_10/app/components/my_list_image.dart';
+import 'package:mini_project_10/app/data/flower.dart';
+import 'package:mini_project_10/app/routes/app_pages.dart';
 
 import '../controllers/home_controller.dart';
 
@@ -137,11 +141,53 @@ class HomeView extends GetView<HomeController> {
                 }
               },
             ),
+
+            //List For Image
+            StreamBuilder<List<Flower>>(
+              stream: controller.getFlower(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+                if (snapshot.hasError) {
+                  return const Center(
+                    child: Text("Error"),
+                  );
+                }
+                if (snapshot.hasData) {
+                  return Container(
+                    alignment: Alignment.topLeft,
+                    child: GridView.builder(
+                      itemCount: snapshot.data?.length,
+                      shrinkWrap: true,
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 3,
+                      ),
+                      itemBuilder: (context, index) {
+                        return MyListImage(
+                          flowerName: "${snapshot.data?[index].flowerName}",
+                          flowerImage: "${snapshot.data?[index].flowerImages}",
+                        );
+                      },
+                    ),
+                  );
+                } else {
+                  return const Center(
+                    child: Text('Has No Data'),
+                  );
+                }
+              },
+            ),
             Expanded(
               child: Center(
                 child: MyButton(
                   text: 'Upload Foto',
-                  onTap: () {},
+                  onTap: () {
+                    Get.toNamed(Routes.ADD_IMAGE);
+                  },
                 ),
               ),
             ),

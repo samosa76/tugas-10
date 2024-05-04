@@ -13,6 +13,7 @@ void main() async {
       appId: "1:236368713670:android:845f16b80fc69e8ebac4c7",
       messagingSenderId: "236368713670",
       projectId: "miniproject-475ee",
+      storageBucket: 'gs://miniproject-475ee.appspot.com',
     ),
   );
   runApp(

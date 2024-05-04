@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 
+import '../modules/add_image/bindings/add_image_binding.dart';
+import '../modules/add_image/views/add_image_view.dart';
 import '../modules/auth/bindings/auth_binding.dart';
 import '../modules/auth/views/auth_view.dart';
 import '../modules/home/bindings/home_binding.dart';
@@ -43,6 +45,11 @@ class AppPages {
       name: _Paths.AUTH,
       page: () => const AuthView(),
       binding: AuthBinding(),
+    ),
+    GetPage(
+      name: _Paths.ADD_IMAGE,
+      page: () => const AddImageView(),
+      binding: AddImageBinding(),
     ),
   ];
 }

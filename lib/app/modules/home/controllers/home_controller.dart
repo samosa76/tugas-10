@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mini_project_10/app/data/flower.dart';
 
@@ -36,5 +37,37 @@ class HomeController extends GetxController {
   @override
   void onClose() {
     super.onClose();
+  }
+
+  Future<void> deleteFlower(String id) async {
+    Get.dialog(
+      AlertDialog(
+        title: const Text('Confirmation'),
+        content: const Text('Are you sure?'),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Get.back();
+            },
+            child: const Text("No"),
+          ),
+          TextButton(
+            onPressed: () {
+              final ref =
+                  FirebaseFirestore.instance.collection("Flower").doc(id);
+              ref.delete();
+              Get.back();
+              Get.snackbar('Deleted', 'Your data has been remove');
+            },
+            child: const Text('Yes'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  onTapDeleteFlower(String id, String name) {
+    deleteFlower(id);
+    Get.snackbar('Delete Success', 'data ${name} has been deleted');
   }
 }

@@ -1,19 +1,22 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:get/get.dart';
 
 class MenuItems extends StatelessWidget {
-  const MenuItems({super.key});
+  final Function()? onTapUpdate;
+  final Function()? onTapDelete;
+  const MenuItems({
+    super.key,
+    required this.onTapUpdate,
+    required this.onTapDelete,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         GestureDetector(
-          onTap: () {
-            Get.snackbar('Update', 'Your data has been updated');
-          },
+          onTap: onTapUpdate,
           child: Container(
             height: 50,
             width: double.infinity,
@@ -24,9 +27,7 @@ class MenuItems extends StatelessWidget {
           ),
         ),
         GestureDetector(
-          onTap: () {
-            Get.snackbar('Delete', 'Your data has been deleted');
-          },
+          onTap: onTapDelete,
           child: Container(
             height: 50,
             width: double.infinity,

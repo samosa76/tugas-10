@@ -8,11 +8,15 @@ import 'package:popover/popover.dart';
 class MyListImage extends StatelessWidget {
   final String flowerName;
   final String flowerImage;
+  final Function()? onTapUpdate;
+  final Function()? onTapDelete;
 
   const MyListImage({
     super.key,
     required this.flowerName,
     required this.flowerImage,
+    required this.onTapUpdate,
+    this.onTapDelete,
   });
 
   @override
@@ -48,14 +52,19 @@ class MyListImage extends StatelessWidget {
                     ),
                   ),
                 ),
+                //show options
                 GestureDetector(
                   onTap: () {
                     showPopover(
-                        context: context,
-                        bodyBuilder: (context) => const MenuItems(),
-                        width: 250,
-                        height: 100,
-                        backgroundColor: Color.fromRGBO(149, 117, 205, 1));
+                      context: context,
+                      bodyBuilder: (context) => MenuItems(
+                        onTapUpdate: onTapUpdate,
+                        onTapDelete: onTapDelete,
+                      ),
+                      width: 250,
+                      height: 100,
+                      backgroundColor: Color.fromRGBO(149, 117, 205, 1),
+                    );
                   },
                   child: const Align(
                     alignment: Alignment.topRight,

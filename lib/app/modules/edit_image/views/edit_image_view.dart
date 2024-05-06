@@ -127,20 +127,24 @@ class EditImageView extends GetView<EditImageController> {
                     text: 'Edit Flower',
                     onTap: () {
                       //check image changed
-                      if (controller.image.value.path.isEmpty) {
-                        controller.noImageUpdate(
-                          controller.id,
-                          controller.flowerNameController.text,
-                          controller.path,
-                        );
+                      if (controller.flowerNameController.text.isNotEmpty) {
+                        if (controller.image.value.path.isEmpty) {
+                          controller.noImageUpdate(
+                            controller.id,
+                            controller.flowerNameController.text,
+                            controller.path,
+                          );
+                        } else {
+                          controller.updateFlower(
+                            controller.id,
+                            controller.flowerNameController.text,
+                            File(
+                              controller.image.value.path,
+                            ),
+                          );
+                        }
                       } else {
-                        controller.updateFlower(
-                          controller.id,
-                          controller.flowerNameController.text,
-                          File(
-                            controller.image.value.path,
-                          ),
-                        );
+                        Get.snackbar('Invalid', 'Name can\'t be empty');
                       }
                     },
                   ),

@@ -68,7 +68,7 @@ class MyListImage extends StatelessWidget {
                       ),
                       width: 250,
                       height: 100,
-                      backgroundColor: Color.fromRGBO(149, 117, 205, 1),
+                      backgroundColor: const Color.fromRGBO(213, 103, 205, 1),
                     );
                   },
                   child: const Align(

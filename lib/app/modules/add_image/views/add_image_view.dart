@@ -128,7 +128,7 @@ class AddImageView extends GetView<AddImageController> {
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 50.0),
                   child: MyButton(
-                    text: 'text',
+                    text: 'Upload',
                     onTap: () async {
                       controller.saveImage(
                         File(controller.image.value.path),

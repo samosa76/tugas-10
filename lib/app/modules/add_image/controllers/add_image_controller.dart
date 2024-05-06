@@ -49,22 +49,27 @@ class AddImageController extends GetxController {
         );
       },
     );
-    try {
-      String imageUrl = await uploadFile(images);
-      String dateNow = DateTime.now().toString();
-      final refDoc = ref.doc();
-      final data = {
-        'id': refDoc.id,
-        'name': name,
-        'image': imageUrl,
-        'created_at': dateNow,
-      };
-      refDoc.set(data);
+    if (name.isNotEmpty && images.path.isNotEmpty) {
+      try {
+        String imageUrl = await uploadFile(images);
+        String dateNow = DateTime.now().toString();
+        final refDoc = ref.doc();
+        final data = {
+          'id': refDoc.id,
+          'name': name,
+          'image': imageUrl,
+          'created_at': dateNow,
+        };
+        refDoc.set(data);
+        Get.back();
+      } catch (e) {
+        Get.snackbar('Fail', 'Somthing went wrong');
+      }
       Get.back();
-    } catch (e) {
-      Get.snackbar('Fail', 'Somthing went wrong');
+    } else {
+      Get.back();
+      Get.snackbar('Invalid', 'Please enter your data');
     }
-    Get.back();
   }
 
   //Image Picker

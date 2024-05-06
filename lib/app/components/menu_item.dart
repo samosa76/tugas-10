@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class MenuItems extends StatelessWidget {
   final Function()? onTapUpdate;
@@ -20,9 +21,17 @@ class MenuItems extends StatelessWidget {
           child: Container(
             height: 50,
             width: double.infinity,
-            color: Colors.deepPurple[300],
-            child: const Center(
-              child: Text('Update'),
+            color: const Color.fromRGBO(213, 103, 205, 1),
+            child: Center(
+              child: Text(
+                'Update',
+                style: GoogleFonts.poppins(
+                  textStyle: const TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w400,
+                      color: Colors.white),
+                ),
+              ),
             ),
           ),
         ),
@@ -31,9 +40,17 @@ class MenuItems extends StatelessWidget {
           child: Container(
             height: 50,
             width: double.infinity,
-            color: Colors.deepPurple[200],
-            child: const Center(
-              child: Text('Delete'),
+            color: Color.fromARGB(255, 250, 139, 243),
+            child: Center(
+              child: Text(
+                'Delete',
+                style: GoogleFonts.poppins(
+                  textStyle: const TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w400,
+                      color: Colors.white),
+                ),
+              ),
             ),
           ),
         )

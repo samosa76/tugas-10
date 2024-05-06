@@ -113,6 +113,7 @@ class RegisterView extends GetView<RegisterController> {
                     ),
                   ),
                   MyTextField(
+                    type: TextInputType.number,
                     controller: controller.numberController,
                     hintText: "Phone Number here...",
                     obscureText: false,

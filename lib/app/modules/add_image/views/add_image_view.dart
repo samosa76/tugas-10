@@ -118,6 +118,7 @@ class AddImageView extends GetView<AddImageController> {
                         ),
                       ),
                       MyTextField(
+                        maxLength: 9,
                         controller: controller.flowerNameController,
                         hintText: 'Flower Name here..',
                         obscureText: false,

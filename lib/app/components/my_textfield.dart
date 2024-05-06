@@ -4,12 +4,16 @@ class MyTextField extends StatelessWidget {
   final controller;
   final String hintText;
   final bool obscureText;
+  final maxLength;
+  final type;
 
   const MyTextField({
     super.key,
     required this.controller,
     required this.hintText,
     required this.obscureText,
+    this.maxLength,
+    this.type,
   });
 
   @override
@@ -22,8 +26,11 @@ class MyTextField extends StatelessWidget {
         child: TextField(
           controller: controller,
           obscureText: obscureText,
+          keyboardType: type,
+          maxLength: maxLength,
           style: TextStyle(fontSize: 16.0),
           decoration: InputDecoration(
+            counterText: "",
             hintText: hintText,
             hintStyle: const TextStyle(
               color: Color.fromRGBO(212, 212, 212, 1),

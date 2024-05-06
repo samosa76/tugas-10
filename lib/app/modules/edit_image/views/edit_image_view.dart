@@ -124,7 +124,7 @@ class EditImageView extends GetView<EditImageController> {
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 50.0),
                   child: MyButton(
-                    text: 'text',
+                    text: 'Edit Flower',
                     onTap: () {
                       //check image changed
                       if (controller.image.value.path.isEmpty) {
@@ -133,7 +133,6 @@ class EditImageView extends GetView<EditImageController> {
                           controller.flowerNameController.text,
                           controller.path,
                         );
-                        Get.back();
                       } else {
                         controller.updateFlower(
                           controller.id,
@@ -142,7 +141,6 @@ class EditImageView extends GetView<EditImageController> {
                             controller.image.value.path,
                           ),
                         );
-                        Get.back();
                       }
                     },
                   ),

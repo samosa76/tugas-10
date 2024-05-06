@@ -6,11 +6,19 @@ import 'package:mini_project_10/app/data/flower.dart';
 
 class HomeController extends GetxController {
   var user = FirebaseAuth.instance.currentUser!.email;
+
   FirebaseFirestore firestore = FirebaseFirestore.instance;
-  // var flower = Get.arguments as Flower;
+
+  String? refreshUser() {
+    FirebaseAuth.instance.authStateChanges().listen((currentUser) {
+      user = currentUser?.email;
+    });
+    return user;
+  }
 
   //get user profile
   Future<DocumentSnapshot<Map<String, dynamic>>> getUserProfile() async {
+    refreshUser();
     return await FirebaseFirestore.instance.collection('user').doc(user).get();
   }
 
@@ -21,11 +29,6 @@ class HomeController extends GetxController {
         .snapshots()
         .map((snapshot) =>
             snapshot.docs.map((doc) => Flower.fromJson(doc.data())).toList());
-  }
-
-  //Sgin User Out
-  Future<void> signUserOut() async {
-    await FirebaseAuth.instance.signOut();
   }
 
   @override
@@ -77,5 +80,35 @@ class HomeController extends GetxController {
       'image': image,
     };
     return data;
+  }
+
+  //Sgin User Out
+  signUserOut() {
+    Get.dialog(
+      AlertDialog(
+        title: Text('Logout'),
+        content: Text("Are you sure?"),
+        actions: [
+          TextButton(
+            child: const Text(
+              'Yes',
+              style: TextStyle(
+                color: Colors.red,
+              ),
+            ),
+            onPressed: () {
+              FirebaseAuth.instance.signOut();
+              Get.back();
+            },
+          ),
+          TextButton(
+            child: const Text('No'),
+            onPressed: () {
+              Get.back();
+            },
+          )
+        ],
+      ),
+    );
   }
 }

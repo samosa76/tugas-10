@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -38,16 +39,31 @@ class AddImageController extends GetxController {
   }
 
   Future<void> saveImage(File images, String name) async {
-    String imageUrl = await uploadFile(images);
-    String dateNow = DateTime.now().toString();
-    final refDoc = ref.doc();
-    final data = {
-      'id': refDoc.id,
-      'name': name,
-      'image': imageUrl,
-      'created_at': dateNow,
-    };
-    refDoc.set(data);
+    showDialog(
+      context: Get.context!,
+      builder: (context) {
+        return const Center(
+          child: CircularProgressIndicator(
+            color: Color.fromRGBO(213, 103, 205, 1),
+          ),
+        );
+      },
+    );
+    try {
+      String imageUrl = await uploadFile(images);
+      String dateNow = DateTime.now().toString();
+      final refDoc = ref.doc();
+      final data = {
+        'id': refDoc.id,
+        'name': name,
+        'image': imageUrl,
+        'created_at': dateNow,
+      };
+      refDoc.set(data);
+      Get.back();
+    } catch (e) {
+      Get.snackbar('Fail', 'Somthing went wrong');
+    }
     Get.back();
   }
 

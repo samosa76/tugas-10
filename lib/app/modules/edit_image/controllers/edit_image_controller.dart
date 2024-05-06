@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -49,13 +50,29 @@ class EditImageController extends GetxController {
     String flowerName,
     File images,
   ) async {
-    String imageUrl = await uploadFile(images);
-    final refDoc = firestore.collection('Flower').doc(id);
-    final data = {
-      'name': flowerName,
-      'image': imageUrl,
-    };
-    refDoc.update(data);
+    showDialog(
+      context: Get.context!,
+      builder: (context) {
+        return const Center(
+          child: CircularProgressIndicator(
+            color: Color.fromRGBO(213, 103, 205, 1),
+          ),
+        );
+      },
+    );
+    try {
+      String imageUrl = await uploadFile(images);
+      final refDoc = firestore.collection('Flower').doc(id);
+      final data = {
+        'name': flowerName,
+        'image': imageUrl,
+      };
+      refDoc.update(data);
+      Get.back();
+    } catch (e) {
+      Get.snackbar('Fail', 'Somthing went wrong');
+    }
+    Get.back();
   }
 
   Future<void> noImageUpdate(
@@ -63,12 +80,28 @@ class EditImageController extends GetxController {
     String flowerName,
     String image,
   ) async {
-    final refDoc = firestore.collection('Flower').doc(id);
-    final data = {
-      'name': flowerName,
-      'image': image,
-    };
-    refDoc.update(data);
+    showDialog(
+      context: Get.context!,
+      builder: (context) {
+        return const Center(
+          child: CircularProgressIndicator(
+            color: Color.fromRGBO(213, 103, 205, 1),
+          ),
+        );
+      },
+    );
+    try {
+      final refDoc = firestore.collection('Flower').doc(id);
+      final data = {
+        'name': flowerName,
+        'image': image,
+      };
+      refDoc.update(data);
+      Get.back();
+    } catch (e) {
+      Get.snackbar('Fail', 'Somthing went wrong');
+    }
+    Get.back();
   }
 
   Future getImage(bool gallery) async {

@@ -7,6 +7,7 @@ import 'package:mini_project_10/app/data/flower.dart';
 class HomeController extends GetxController {
   var user = FirebaseAuth.instance.currentUser!.email;
   FirebaseFirestore firestore = FirebaseFirestore.instance;
+  // var flower = Get.arguments as Flower;
 
   //get user profile
   Future<DocumentSnapshot<Map<String, dynamic>>> getUserProfile() async {
@@ -66,8 +67,12 @@ class HomeController extends GetxController {
     );
   }
 
-  onTapDeleteFlower(String id, String name) {
-    deleteFlower(id);
-    Get.snackbar('Delete Success', 'data ${name} has been deleted');
+  Map sendingParameter(String id, String name, String image) {
+    final data = {
+      'id': id,
+      'name': name,
+      'image': image,
+    };
+    return data;
   }
 }

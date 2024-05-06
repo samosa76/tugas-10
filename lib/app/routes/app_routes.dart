@@ -9,6 +9,7 @@ abstract class Routes {
   static const REGISTER = _Paths.REGISTER;
   static const AUTH = _Paths.AUTH;
   static const ADD_IMAGE = _Paths.ADD_IMAGE;
+  static const EDIT_IMAGE = _Paths.EDIT_IMAGE;
 }
 
 abstract class _Paths {
@@ -19,4 +20,5 @@ abstract class _Paths {
   static const REGISTER = '/register';
   static const AUTH = '/auth';
   static const ADD_IMAGE = '/add-image';
+  static const EDIT_IMAGE = '/edit-image';
 }

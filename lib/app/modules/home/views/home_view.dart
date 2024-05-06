@@ -28,7 +28,7 @@ class HomeView extends GetView<HomeController> {
         ),
         child: ListView(
           scrollDirection: Axis.vertical,
-          shrinkWrap: true,
+          shrinkWrap: false,
           children: [
             Column(
               children: [
@@ -184,15 +184,25 @@ class HomeView extends GetView<HomeController> {
                                     "${snapshot.data?[index].flowerImages}",
                                 onTapUpdate: () {
                                   Get.back();
-                                  Get.snackbar(
-                                    "${snapshot.data?[index].flowerName}",
-                                    "${snapshot.data?[index].id}",
+                                  Get.toNamed(
+                                    Routes.EDIT_IMAGE,
+                                    arguments: controller.sendingParameter(
+                                      '${snapshot.data?[index].id}',
+                                      '${snapshot.data?[index].flowerName}',
+                                      '${snapshot.data?[index].flowerImages}',
+                                    ),
                                   );
                                 },
                                 onTapDelete: () {
                                   Get.back();
                                   controller.deleteFlower(
                                     '${snapshot.data?[index].id}',
+                                  );
+                                },
+                                onTap: () {
+                                  Get.snackbar(
+                                    "${snapshot.data?[index].flowerName}",
+                                    "${snapshot.data?[index].id}",
                                   );
                                 },
                               );

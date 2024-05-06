@@ -10,13 +10,15 @@ class MyListImage extends StatelessWidget {
   final String flowerImage;
   final Function()? onTapUpdate;
   final Function()? onTapDelete;
+  final Function()? onTap;
 
   const MyListImage({
     super.key,
     required this.flowerName,
     required this.flowerImage,
     required this.onTapUpdate,
-    this.onTapDelete,
+    required this.onTapDelete,
+    required this.onTap,
   });
 
   @override
@@ -41,14 +43,17 @@ class MyListImage extends StatelessWidget {
           children: [
             Stack(
               children: [
-                Container(
-                  width: double.infinity,
-                  height: 90,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(8.0),
-                    child: CachedNetworkImage(
-                      imageUrl: flowerImage,
-                      fit: BoxFit.cover,
+                GestureDetector(
+                  onTap: onTap,
+                  child: Container(
+                    width: double.infinity,
+                    height: 90,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(8.0),
+                      child: CachedNetworkImage(
+                        imageUrl: flowerImage,
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                 ),

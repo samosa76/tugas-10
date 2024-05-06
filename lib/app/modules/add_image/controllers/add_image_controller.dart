@@ -39,11 +39,13 @@ class AddImageController extends GetxController {
 
   Future<void> saveImage(File images, String name) async {
     String imageUrl = await uploadFile(images);
+    String dateNow = DateTime.now().toString();
     final refDoc = ref.doc();
     final data = {
       'id': refDoc.id,
       'name': name,
       'image': imageUrl,
+      'created_at': dateNow,
     };
     refDoc.set(data);
     Get.back();

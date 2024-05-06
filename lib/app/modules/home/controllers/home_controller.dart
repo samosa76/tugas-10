@@ -15,8 +15,11 @@ class HomeController extends GetxController {
   }
 
   Stream<List<Flower>> getFlower() {
-    return FirebaseFirestore.instance.collection('Flower').snapshots().map(
-        (snapshot) =>
+    return FirebaseFirestore.instance
+        .collection('Flower')
+        .orderBy("created_at")
+        .snapshots()
+        .map((snapshot) =>
             snapshot.docs.map((doc) => Flower.fromJson(doc.data())).toList());
   }
 

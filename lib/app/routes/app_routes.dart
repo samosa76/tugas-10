@@ -10,6 +10,7 @@ abstract class Routes {
   static const AUTH = _Paths.AUTH;
   static const ADD_IMAGE = _Paths.ADD_IMAGE;
   static const EDIT_IMAGE = _Paths.EDIT_IMAGE;
+  static const EDIT_PROFILE = _Paths.EDIT_PROFILE;
 }
 
 abstract class _Paths {
@@ -21,4 +22,5 @@ abstract class _Paths {
   static const AUTH = '/auth';
   static const ADD_IMAGE = '/add-image';
   static const EDIT_IMAGE = '/edit-image';
+  static const EDIT_PROFILE = '/edit-profile';
 }

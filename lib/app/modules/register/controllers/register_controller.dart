@@ -48,6 +48,7 @@ class RegisterController extends GetxController {
             'addres': address,
             'number': number,
             'password': password,
+            'image-profile': "",
             'register-at': dateNow,
           });
           //create new user using email and password

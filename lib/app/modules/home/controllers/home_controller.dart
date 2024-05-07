@@ -18,7 +18,6 @@ class HomeController extends GetxController {
 
   //get user profile
   Future<DocumentSnapshot<Map<String, dynamic>>> getUserProfile() async {
-    refreshUser();
     return await FirebaseFirestore.instance.collection('user').doc(user).get();
   }
 
@@ -34,6 +33,7 @@ class HomeController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+    refreshUser();
   }
 
   @override
@@ -73,10 +73,27 @@ class HomeController extends GetxController {
     );
   }
 
-  Map sendingParameter(String id, String name, String image) {
+  Map sendingListParameter(String id, String name, String image) {
     final data = {
       'id': id,
       'name': name,
+      'image': image,
+    };
+    return data;
+  }
+
+  Map sendingProfileParameter(
+    String email,
+    String username,
+    String address,
+    String number,
+    String image,
+  ) {
+    final data = {
+      'email': email,
+      'username': username,
+      'address': address,
+      'number': number,
       'image': image,
     };
     return data;
